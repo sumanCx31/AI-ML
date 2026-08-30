@@ -1,0 +1,136 @@
+<html>
+  <head>
+    <title>House Price Prediction</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #f4f7fb 0%, #e7edf8 100%);
+        color: #1f2937;
+      }
+
+      .page-wrap {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 20px;
+      }
+
+      .card {
+        width: 100%;
+        max-width: 460px;
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid #e5e7eb;
+        border-radius: 18px;
+        box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+        padding: 30px 28px;
+        text-align: center;
+      }
+
+      .title {
+        display: block;
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 8px;
+        color: #111827;
+      }
+
+      .subtitle {
+        margin: 0 0 24px;
+        color: #6b7280;
+        font-size: 0.98rem;
+      }
+
+      form {
+        display: grid;
+        gap: 18px;
+      }
+
+      .field {
+        text-align: left;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 0.94rem;
+        font-weight: 600;
+        color: #374151;
+      }
+
+      input {
+        width: 100%;
+        padding: 12px 14px;
+        border: 1px solid #d1d5db;
+        border-radius: 10px;
+        font-size: 1rem;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        background: #f9fafb;
+      }
+
+      input:focus {
+        outline: none;
+        border-color: #2563eb;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+        background: #ffffff;
+      }
+
+      button {
+        width: 100%;
+        padding: 13px 18px;
+        border: none;
+        border-radius: 10px;
+        background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+        color: white;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 8px 20px rgba(17, 24, 39, 0.2);
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      function showAlert() {
+        window.alert("Input values submitted!!");
+        return false;
+      }
+    </script>
+
+    <div class="page-wrap">
+      <div class="card">
+        <span class="title">House Price Predictor</span>
+        <p class="subtitle">Estimate house prices across the Kathmandu Valley</p>
+
+        <form action="">
+          <div class="field">
+            <label for="landSize">Land size (in Aana)</label>
+            <input id="landSize" type="number" placeholder="e.g. 6.5" min="0" step="0.1" />
+          </div>
+
+          <div class="field">
+            <label for="floors">Number of floors</label>
+            <input id="floors" type="number" placeholder="e.g. 2" min="1" step="1" />
+          </div>
+
+          <div class="field">
+            <label for="houseAge">House age (Years)</label>
+            <input id="houseAge" type="number" placeholder="e.g. 5" min="0" step="1" />
+          </div>
+
+          <button type="button" onclick="showAlert()">Predict Price</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

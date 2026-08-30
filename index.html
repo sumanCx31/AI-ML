@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>House Price Predictor - Kathmandu Valley</title>
+  <style>
+    body {
+      background-color: white;
+      font-family: Arial, sans-serif;
+      color: black;
+      text-align: center;
+      width: 420px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 24px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: gray;
+      margin-bottom: 20px;
+    }
+
+    .house-icon {
+      width: 120px;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 5px;
+      text-align: left;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      font-size: 15px;
+      margin-bottom: 15px;
+      border: 1px solid gray;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    select {
+      width: 100%;
+      padding: 10px;
+      font-size: 15px;
+      margin-bottom: 15px;
+      border: 1px solid gray;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      font-size: 15px;
+      background-color: black;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .error {
+      display: none;
+      color: red;
+      font-size: 13px;
+      text-align: left;
+      margin-bottom: 15px;
+    }
+
+    .result {
+      display: none;
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #f5f5f5;
+      border-radius: 5px;
+    }
+
+    .value {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 12px;
+      color: gray;
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <h1>House Price Predictor</h1>
+  <img src="images_logo.png" alt="">
+  <p class="subtitle">Estimate house prices across the Kathmandu Valley</p>
+
+  <label for="size">Land size (in Aana)</label>
+  <input type="number" id="size" placeholder="e.g. 6.5" step="0.1" min="0">
+
+
+  <label for="floors">Number of floors</label>
+  <input type="number" id="floors" placeholder="e.g. 2" step="0.5" min="0">
+
+  <label for="age">House age (years)</label>
+  <input type="number" id="age" placeholder="e.g. 5" step="1" min="0">
+
+  <div class="error" id="error">Please fill in all fields with valid values.</div>
+
+  <button onclick="predictPrice()">Predict Price</button>
+
+  <div class="result" id="result">
+    <p>Estimated price</p>
+    <p class="value" id="resultValue">-</p>
+  </div>
+
+  <script>
+    async function predictPrice() {
+  const size = document.getElementById("size").value;
+  const floors = document.getElementById("floors").value;
+  const age = document.getElementById("age").value;
+  const errorBox = document.getElementById("error");
+  const resultBox = document.getElementById("result");
+
+  if (!size || !floors || !age) {
+    errorBox.style.display = "block";
+    return;
+  }
+  errorBox.style.display = "none";
+
+  try {
+    const response = await fetch("http://127.0.0.1:8000/predict", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        size: parseFloat(size),
+        floors: parseFloat(floors),
+        age: parseFloat(age)
+      })
+    });
+
+    const data = await response.json();
+    
+    document.getElementById("resultValue").textContent =
+      "NPR " + Math.max(Math.round(data.price), 0).toLocaleString("en-IN");
+    resultBox.style.display = "block";
+  } catch (err) {
+    console.error("Error connecting to backend:", err);
+  }
+}
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Australian House Price Predictor - Multi-Currency</title>
+ <link rel="stylesheet" href="aus.css">
+</head>
+
+<body>
+
+  <h1>Australian House Price Predictor</h1>
+  <p class="subtitle">Estimate prices displayed in both AUD and NPR</p>
+
+  <label for="bedrooms">Bedrooms</label>
+  <input type="number" id="bedrooms" placeholder="e.g. 3" min="1" max="10">
+
+  <label for="bathrooms">Bathrooms</label>
+  <input type="number" id="bathrooms" placeholder="e.g. 2" min="1" max="5">
+
+  <label for="sqft">Indoor Living Area (SqFt)</label>
+  <input type="number" id="sqft" placeholder="e.g. 2000" min="200">
+
+  <label for="city">City</label>
+  <select id="city">
+    <option value="Sydney">Sydney</option>
+    <option value="Melbourne">Melbourne</option>
+    <option value="Brisbane">Brisbane</option>
+    <option value="Perth">Perth</option>
+    <option value="Adelaide">Adelaide</option>
+  </select>
+
+  <label for="state">State</label>
+  <select id="state">
+    <option value="NSW">NSW</option>
+    <option value="VIC">VIC</option>
+    <option value="QLD">QLD</option>
+    <option value="WA">WA</option>
+    <option value="SA">SA</option>
+  </select>
+
+  <label for="year_built">Year Built</label>
+  <input type="number" id="year_built" placeholder="e.g. 2010" min="1900" max="2026">
+
+  <label for="property_type">Property Type</label>
+  <select id="property_type">
+    <option value="House">House</option>
+    <option value="Apartment">Apartment</option>
+    <option value="Townhouse">Townhouse</option>
+  </select>
+
+  <label for="garage">Garage</label>
+  <select id="garage">
+    <option value="1">Yes</option>
+    <option value="0">No</option>
+  </select>
+
+  <div class="error" id="error">Please fill in all fields correctly.</div>
+
+  <button onclick="predictPrice()">Predict Price</button>
+
+  <div class="result" id="result">
+    <div class="price-row">
+      <span class="label-text">Estimated Price (AUD)</span>
+      <div class="value" id="audValue">-</div>
+    </div>
+    <div class="price-row" style="margin-top: 15px;">
+      <span class="label-text">Estimated Price (NPR)</span>
+      <div class="value" id="nprValue">-</div>
+    </div>
+  </div>
+<script src="aus_script.js"></script>
+
+</body>
+</html>
